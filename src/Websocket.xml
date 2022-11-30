@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="chrisdegelder.websocket.Websocket" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Websocket</name>
+    <description>Listens to websocket messages</description>
+    <icon>
+ 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
+    </icon>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="subscriptionAttribute" type="attribute" required="true">
+                <caption>Subscription attribute</caption>
+                <description>The attribute that contains the subscription id</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+            <property key="progressAttribute" type="attribute" required="false">
+                <caption>Progress attribute</caption>
+                <description>The attribute that contains progress</description>
+                <attributeTypes>
+                    <attributeType name="Integer"/>
+                    <attributeType name="Long"/>
+                </attributeTypes>
+            </property>            
+            <property key="text1Attribute" type="attribute" required="false">
+                <caption>Text attribute 1</caption>
+                <description>An attribute that contains text</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>            
+            <property key="text2Attribute" type="attribute" required="false">
+                <caption>Text attribute 3</caption>
+                <description>An attribute that contains text</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>            
+            <property key="text3Attribute" type="attribute" required="false">
+                <caption>Text attribute 3</caption>
+                <description>An attribute that contains text</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                    <attributeType name="Enum"/>
+                </attributeTypes>
+            </property>            
+            <property key="booleanAttribute" type="attribute" required="false">
+                <caption>Boolean attribute</caption>
+                <description>An attribute that contains a boolean</description>
+                <attributeTypes>
+                    <attributeType name="Boolean"/>
+                </attributeTypes>
+            </property>            
+            <property key="decimalAttribute" type="attribute" required="false">
+                <caption>Decimal attribute</caption>
+                <description>An attribute that contains a decimal</description>
+                <attributeTypes>
+                    <attributeType name="Decimal"/>
+                </attributeTypes>
+            </property>            
+            <property key="dateAttribute" type="attribute" required="false">
+                <caption>Date attribute </caption>
+                <description>An attribute that contains a date</description>
+                <attributeTypes>
+                    <attributeType name="DateTime"/>
+                </attributeTypes>
+            </property>            
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <property key="onUpdateAction" type="action" required="false">
+                <caption>On receive update</caption>
+                <description>Action to trigger when a message is received. Nanoflow is preferred for performance.</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Settings">
+            <property key="path" type="string" required="true">
+                <caption>Path</caption>
+                <description>Should be the same as the constant WebsocketName, don't start with /</description>
+            </property>
+        </propertyGroup>        
+    </properties>
+</widget>
