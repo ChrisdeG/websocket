@@ -1,22 +1,17 @@
 import { Component, ReactNode, createElement } from "react";
 import { WebsocketContainerProps } from "../typings/WebsocketProps";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import {  } from "mendix"
+import {} from "mendix";
 import Big from "big.js";
 
 declare global {
     interface Window {
-        mx:any;
+        mx: any;
     }
 }
 
-interface WebsocketContainerPropsExtended extends WebsocketContainerProps{
-    mxObject?: mendix.lib.MxObject;
-}
-
-
 export default class WebSocket extends Component<WebsocketContainerProps> {
-    private readonly sendKeepAliveHandler = this.sendKeepAlive.bind(this)
+    private readonly sendKeepAliveHandler = this.sendKeepAlive.bind(this);
 
     client: W3CWebSocket;
     subscribed: boolean;
@@ -26,13 +21,13 @@ export default class WebSocket extends Component<WebsocketContainerProps> {
         super(props);
         this.subscribed = false;
         // for local development use ws, in the cloud wss
-        let protocol = (window.location.protocol == "http:") ? "ws://" : "wss://";
+        const protocol = window.location.protocol === "http:" ? "ws://" : "wss://";
         this.client = new W3CWebSocket(protocol + window.location.host + "/" + this.props.path);
     }
 
     // send every 15 seconds a keepalive, otherwise the websocket will be closed after 30 seconds
     sendKeepAlive() {
-        if (this.subscribed && this.client.readyState == this.client.OPEN) {
+        if (this.subscribed && this.client.readyState === this.client.OPEN) {
             this.client.send("keepalive:" + this.props.subscriptionAttribute.displayValue);
         }
     }
@@ -57,16 +52,20 @@ export default class WebSocket extends Component<WebsocketContainerProps> {
             this.props.dateAttribute.setValue(new Date(Number(data.datetime)));
         }
         if (this.props.booleanAttribute) {
-            this.props.booleanAttribute.setValue(data.busy=="true");
+            this.props.booleanAttribute.setValue(data.busy === "true");
         }
     }
 
     // called from various places because the timing of rendering or websocket connections differs per browser.
     subscribe(): void {
-        if (!this.subscribed && this.client.readyState == this.client.OPEN && this.props.subscriptionAttribute.status == 'available') {
-            console.debug('websocket subscribe', this.props.subscriptionAttribute.displayValue)
+        if (
+            !this.subscribed &&
+            this.client.readyState === this.client.OPEN &&
+            this.props.subscriptionAttribute.status === "available"
+        ) {
+            console.debug("websocket subscribe", this.props.subscriptionAttribute.displayValue);
             const csrfToken = window.mx && window.mx.session ? window.mx.session.getConfig("csrftoken") : "";
-            this.client.send("subscribe:" + this.props.subscriptionAttribute.displayValue + "," + csrfToken );
+            this.client.send("subscribe:" + this.props.subscriptionAttribute.displayValue + "," + csrfToken);
             this.subscribed = true;
         }
     }
@@ -86,16 +85,16 @@ export default class WebSocket extends Component<WebsocketContainerProps> {
                     this.props.onUpdateAction.execute();
                 }
             } else {
-                console.error('websocket message received without data', message)
+                console.error("websocket message received without data", message);
             }
         };
         this.client.onclose = () => {
-            console.debug('unsubscribe', this.props.subscriptionAttribute.displayValue)
+            console.debug("websocket unsubscribe", this.props.subscriptionAttribute.displayValue);
             this.subscribed = false;
             if (this.intervalId) {
                 clearInterval(this.intervalId);
             }
-        }
+        };
     }
 
     componentWillUnmount() {
@@ -110,6 +109,4 @@ export default class WebSocket extends Component<WebsocketContainerProps> {
         }
         return <div></div>;
     }
-
-
 }
