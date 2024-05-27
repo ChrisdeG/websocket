@@ -22,16 +22,12 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.14.0",
-    "@types/big.js": "^4.0.5",
-    "@types/classnames": "^2.2.4",
-    "@types/react": "~16.9.0",
-    "@types/react-dom": "~16.9.0",
-    "mendix-client": "^7.15.8"
+    "@mendix/pluggable-widgets-tools": "^9.24.0",
+    "@types/websocket": "^1.0.10",
+    "@types/big.js": "^6.0.2"
   },
   "dependencies": {
-    "@types/websocket": "^1.0.2",
     "classnames": "^2.2.6",
-    "websocket": "^1.0.33"
+    "websocket": "^1.0.35"
   }
 }
